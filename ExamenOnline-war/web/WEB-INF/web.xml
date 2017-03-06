@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>ExamServlet</servlet-name>
+        <servlet-class>org.mokiductions.servlets.ExamServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CorrectionServlet</servlet-name>
+        <servlet-class>org.mokiductions.servlets.CorrectionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SummaryServlet</servlet-name>
+        <servlet-class>org.mokiductions.servlets.SummaryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExamServlet</servlet-name>
+        <url-pattern>/priv/ExamServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CorrectionServlet</servlet-name>
+        <url-pattern>/priv/CorrectionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SummaryServlet</servlet-name>
+        <url-pattern>/SummaryServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Secure Application</web-resource-name>
+            <url-pattern>/priv/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>administrators</role-name>
+            <role-name>students</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>file</realm-name>
+    </login-config>
+    <security-role>
+        <role-name>administrators</role-name>
+    </security-role>
+    <security-role>
+        <role-name>students</role-name>
+    </security-role>
+</web-app>
